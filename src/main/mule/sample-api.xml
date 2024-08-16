@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="aa1c12fd-fc08-46c5-a8dc-38414cb2c4ff" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="sample-apiFlow" doc:id="1475257a-5744-4b74-bf67-e237e211a553" >
+		<http:listener doc:name="Listener" doc:id="91b2a1ac-e5e2-45d3-b751-e02caf15de32" config-ref="HTTP_Listener_config" path="/test"/>
+		<choice doc:name="Choice" doc:id="69660369-d611-48b8-bb79-d42587483639" >
+			<when expression='#[attributes.maskedRequestPath== "/test"]'>
+				<ee:transform doc:name="Transform Message" doc:id="f1572844-923c-4741-a2ff-2b98521d6d5e">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "Hello world"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+			</when>
+		</choice>
+	</flow>
+</mule>
