@@ -14,7 +14,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.4.0-20230320</app.runtime>
-		<mule.maven.plugin.version>3.8.6</mule.maven.plugin.version>
+		<mule.maven.plugin.version>3.8.1</mule.maven.plugin.version>
 	</properties>
 
 	<build>
@@ -32,6 +32,18 @@
 				<configuration>
 					<classifier>mule-application</classifier>
 				</configuration>
+			</plugin>
+			<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-compiler-plugin</artifactId>
+				    <version>3.8.1</version>
+				    <configuration>
+				        <fork>true</fork>
+				        <compilerArgs>
+				            <arg>--add-opens</arg>
+				            <arg>java.base/sun.net.www.protocol.jar=ALL-UNNAMED</arg>
+				        </compilerArgs>
+				    </configuration>
 			</plugin>
 		</plugins>
 	</build>
