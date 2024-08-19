@@ -3,7 +3,7 @@ pipeline {
  stages {
  stage('Build') {
  steps {
- echo "build success"
+ echo "build processing"
  bat "mvn clean install"
  }
  }
@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 // Run Maven tests
-                sh 'mvn test'
+                bat "mvn test"
             }
         }
 }
