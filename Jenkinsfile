@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git url: 'https://your-repo-url.git', branch: 'main'
+                git url: 'https://github.com/sivainheritcloud/sample-api.git', branch: 'main'
             }
         }
 
