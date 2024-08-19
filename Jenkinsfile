@@ -7,4 +7,12 @@ pipeline {
  bat "mvn clean install"
  }
  }
-}}
+   stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // Run Maven tests
+                sh 'mvn test'
+            }
+        }
+}
+}
